@@ -10,6 +10,63 @@ function alert(color, message) {
     },3000)
 }
 
+
+function filterArrayOnParams(
+    bookTitleElement, 
+    authorElement, 
+    publishedDateFromElement, 
+    publishedDateToElement,
+    books) {
+
+    var result = books
+    var rangeStartingDate
+    var rangeEndingDate
+
+    if(bookTitleElement.value.length > 0) {
+        result = result.filter(function(book) {
+            if(book.title.toLowerCase().includes(bookTitleElement.value.toLowerCase())) {
+                return true
+            }
+
+            return false
+        })
+    }
+
+    if(authorElement.value.length > 0) {
+        result = result.filter(function(book) {
+            if(book.author.toLowerCase().includes(authorElement.value.toLowerCase())) {
+                return true
+            }
+
+            return false
+        })
+    }
+
+    if(publishedDateFromElement.value) {
+        rangeStartingDate = new Date(publishedDateFromElement.value)
+    } else {
+        rangeStartingDate = new Date('1001-1-1')
+    }
+
+    if(publishedDateToElement.value) {
+        rangeEndingDate = new Date(publishedDateToElement.value)
+    } else {
+        rangeEndingDate = new Date()
+    }
+
+    if(publishedDateFromElement.value || publishedDateToElement.value) {
+        result = result.filter(function(book) {
+            publishedDate = new Date(book.published)
+            if(rangeStartingDate <= publishedDate && publishedDate <= rangeEndingDate){
+                return true
+            }
+
+            return false
+        })
+    }
+    return result
+}
+
 function constructTableFromResult(result) {
     var resultTable = document.createElement("TABLE")
     resultTable.setAttribute("id", "books")
