@@ -10,21 +10,20 @@ function alert(color, message) {
     },3000)
 }
 
-
 function filterArrayOnParams(
-    bookTitleElement, 
-    authorElement, 
-    publishedDateFromElement, 
-    publishedDateToElement,
+    bookTitle, 
+    author, 
+    publishedDateFrom, 
+    publishedDateTo,
     books) {
 
     var result = books
     var rangeStartingDate
     var rangeEndingDate
 
-    if(bookTitleElement.value.length > 0) {
+    if(bookTitle.length > 0) {
         result = result.filter(function(book) {
-            if(book.title.toLowerCase().includes(bookTitleElement.value.toLowerCase())) {
+            if(book.title.toLowerCase().includes(bookTitle.toLowerCase())) {
                 return true
             }
 
@@ -32,9 +31,9 @@ function filterArrayOnParams(
         })
     }
 
-    if(authorElement.value.length > 0) {
+    if(author.length > 0) {
         result = result.filter(function(book) {
-            if(book.author.toLowerCase().includes(authorElement.value.toLowerCase())) {
+            if(book.author.toLowerCase().includes(author.toLowerCase())) {
                 return true
             }
 
@@ -42,19 +41,19 @@ function filterArrayOnParams(
         })
     }
 
-    if(publishedDateFromElement.value) {
-        rangeStartingDate = new Date(publishedDateFromElement.value)
+    if(publishedDateFrom) {
+        rangeStartingDate = new Date(publishedDateFrom)
     } else {
-        rangeStartingDate = new Date('1001-1-1')
+        rangeStartingDate = new Date('1001-01-01')
     }
 
-    if(publishedDateToElement.value) {
-        rangeEndingDate = new Date(publishedDateToElement.value)
+    if(publishedDateTo) {
+        rangeEndingDate = new Date(publishedDateTo)
     } else {
         rangeEndingDate = new Date()
     }
 
-    if(publishedDateFromElement.value || publishedDateToElement.value) {
+    if(publishedDateFrom != null || publishedDateTo != null) {
         result = result.filter(function(book) {
             publishedDate = new Date(book.published)
             if(rangeStartingDate <= publishedDate && publishedDate <= rangeEndingDate){
