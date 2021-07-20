@@ -1,3 +1,15 @@
+function alert(color, message) {
+    alertBox=document.getElementById('alert-box')
+    alertBox.style.background = color
+    alertBox.style.borderColor = color
+    alertBox.innerHTML = message
+    alertBox.style.display = "block"
+
+    setTimeout(function(){
+        alertBox.style.display = "none"
+    },3000)
+}
+
 function constructTableFromResult(result) {
     var resultTable = document.createElement("TABLE")
     resultTable.setAttribute("id", "books")

@@ -36,22 +36,3 @@ document.getElementById("addBookButton").addEventListener("click", function() {
     authorElement.value = ''
     publishedDateElement.value = ''
 })
-
-document.getElementById("searchButton").addEventListener("click", async function(){
-    var bookTitleElement = document.getElementById("bookTitleForSearch")
-    var authorElement = document.getElementById("authorForSearch")
-    var publishedDateFromElement = document.getElementById("publishedDateFromForSearch")
-    var publishedDateToElement = document.getElementById("publishedDateToForSearch")
-
-    var result = filterArrayOnParams(
-        bookTitleElement, 
-        authorElement, 
-        publishedDateFromElement, 
-        publishedDateToElement,
-        books
-    )
-
-    document.getElementById("result").innerHTML = ""
-
-    document.getElementById("result").appendChild(constructTableFromResult(result))
-})
